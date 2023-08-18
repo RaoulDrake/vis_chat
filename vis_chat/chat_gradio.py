@@ -52,7 +52,7 @@ def build_guidance_program(
         system_message_templates.SYSTEM_MSG_SCRATCHPAD_V2
     ]
     system_msg = ('\n'.join(system_msgs)).strip()
-    prompt_str = prompt_templates.VIS_CHAT_TEMPLATE_V3  # VIS_CHAT_TEMPLATE
+    prompt_str = prompt_templates.VIS_CHAT_TEMPLATE_V3
 
     get_tool = tools_lib.get_tool_factory(name_to_tool)
     get_schema_regex = tools_lib.get_schema_regex_factory(name_to_tool)
@@ -147,8 +147,8 @@ def chat(
                 content = step['content'].strip()
                 # if i == 0 and result['use_tool']:
                 #     content = "I will use the #" + content
-                if i == 0:
-                    content = "Let me think step-by-step" + step['content'].rstrip()
+                # if i == 0:
+                #     content = "Let me think step-by-step" + step['content'].rstrip()
                 response_cot += [content]
                 if 'action' in step:
                     action = step['action'].strip()
@@ -160,7 +160,7 @@ def chat(
                     if action == "#generate-image":
                         response_cot += [
                             "I will use the #vqa tool to get a description "
-                            "of the style and content of the generated image."]
+                            "of the content and style of the generated image."]
         response_cot = "\n".join(response_cot)
         response_cot = response_cot.strip()
         response_cot_formatted = format_response_images(response_cot)

@@ -158,7 +158,7 @@ class VisualQuestionAnswering:
         example='#vqa({'
                 '"image-path": "image/xxx.png", '
                 '"question": "What is unusual about this image?"'
-                '})',
+                '})',  # <output>answer</output>
                 # '<output>answer from the Visual Question Answering system here</output>',
         schema=[
             {"name": "image-path", "type": "str"},
@@ -258,8 +258,9 @@ class Text2Image:
     @tool(
         name="#generate-image",
         description=(
-                'Text-to-Image system. Useful for generating an image from an input text and saving it to a file.'
-                # 'Output of this tool is the file name of the generated image, e.g., "image/xxx.png". '
+                'Text-to-image system. '
+                'Useful for generating an image and saving it to a file. '
+                'Output of #generate-image is the generated image file name, e.g., image/yyy.png.'
                 # 'Assistant never uses #generate-image on its own, '
                 # 'only if user tells it to create or generate an image.'
 
